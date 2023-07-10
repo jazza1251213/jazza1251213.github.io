@@ -9,9 +9,9 @@
       var answer = document.getElementById("answer").value;
       
       if (answer === "〇") {
-        document.getElementById("result").textContent = "正解です！";
+        document.getElementById("result").textContent = "〇が入力されました";
       } else {
-        document.getElementById("result").textContent = "不正解です！";
+        document.getElementById("result").textContent = "〇以外が入力されました";
       }
     }
   </script>
