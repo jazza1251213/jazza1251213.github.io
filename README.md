@@ -16,7 +16,7 @@
 </head>
 <body>
   <h1>SWATNEO</h1>
-  <label for="answer">モニター画面やキーボード操作を利用者の背後から盗み見て、ログイン情報等を不正取得する：</label>
+  <label for="answer">”不正のトライアングル”の三要素は”動機”と”機会”とあと一つは何か：</label>
   <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
   <p id="result"></p>
