@@ -1,24 +1,22 @@
-#jazza1251213.github.io
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>〇×判定</title>
+  <title>SWAT NEO</title>
   <script>
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
       
-      if (answer === "〇") {
-        document.getElementById("result").textContent = "〇が入力されました";
+      if (answer === "ショルダーハッキング") {
+        document.getElementById("result").textContent = "正解";
       } else {
-        document.getElementById("result").textContent = "〇以外が入力されました";
+        document.getElementById("result").textContent = 不正解";
       }
     }
   </script>
 </head>
 <body>
-  <h1>〇×判定</h1>
-  <label for="answer">答えを入力してください（〇または×）：</label>
+  <h1>SWATNEO</h1>
+  <label for="answer">モニター画面やキーボード操作を利用者の背後から盗み見て、ログイン情報等を不正取得する：</label>
   <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
   <p id="result"></p>
