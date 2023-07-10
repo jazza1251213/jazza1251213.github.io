@@ -6,7 +6,7 @@
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
       
-      if (answer === "ショルダーハッキング") {
+      if (answer === "正当化") {
         document.getElementById("result").textContent = "正解";
       } else {
         document.getElementById("result").textContent = 不正解";
