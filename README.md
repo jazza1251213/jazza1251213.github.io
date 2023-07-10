@@ -1,6 +1,4 @@
-# jazza1251213.github.io
 
-<!DOCTYPE html>
 <html>
 <head>
   <title>〇×判定</title>
