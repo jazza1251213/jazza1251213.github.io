@@ -5,12 +5,6 @@
   <script>
     const filePath1 = 'ans.txt';
     fetch(filePath1)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
     .then(text => {
       const ans = text.split('\n');
       console.log(ans);
@@ -18,18 +12,10 @@
 
     const filePath2 = 'que.txt';
     fetch(filePath2)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
     .then(text => {
-      const ans = text.split('\n');
+      const que = text.split('\n');
       console.log(que);
     })
-
-
     
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
