@@ -12,16 +12,32 @@
         return response.text();
     })
     .then(text => {
-      const lines = text.split('\n');
-      console.log(lines);
+      const ans = text.split('\n');
+      console.log(ans);
     })
+
+    const filePath = 'que.txt';
+    fetch(filePath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(text => {
+      const ans = text.split('\n');
+      console.log(que);
+    })
+
+
+    
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
 
       if (answer === "〇") {
-        document.getElementById("result").textContent = "正解です！";
+        document.getElementById("result").textContent = "正解";
       } else {
-        document.getElementById("result").textContent = "不正解です！";
+        document.getElementById("result").textContent = "不正解";
       }
     }
   </script>
