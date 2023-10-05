@@ -3,7 +3,7 @@ function checkAnswer() {
     const resultElement = document.getElementById("result");
     
     // 正しい答えをここで設定します
-    const correctAnswer = "正しい答え"; // 例: "〇" または "×"
+    const correctAnswer = "〇"; 
     
     const userAnswer = answerInput.value.trim();
     
