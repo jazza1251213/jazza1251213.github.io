@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWAT NEO</title>
+  <title>SWATNEO</title>
+  <script>
+    const filePath = 'ans.txt';
+    fetch(filePath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+        })
+    .then(text => {
+    const lines = text.split('\n');
+    console.log(lines);
+    })
+
+    function checkAnswer() {
+      var answer = document.getElementById("answer").value;
+  </script>
 </head>
 <body>
-    <h1>SWAT NEO</h1>
-    <label for="answer">問題:</label>
-    <input type="text" id="answer" placeholder="ここに答えを入力">
-    <button onclick="checkAnswer()">判定</button>
-    <p id="result"></p>
-
-    <script src="script.js"></script>
+  <h1>SWATNEO</h1>
+  <label for="answer">答えを入力してください（〇または×）：</label>
+  <input type="text" id="answer" />
+  <button onclick="checkAnswer()">判定</button>
+  <p id="result"></p>
 </body>
 </html>
