@@ -4,6 +4,7 @@
   <title>SWATNEO</title>
   <script>
     const filePath = 'ans.txt';
+
     fetch(filePath)
     .then(response => {
       if (!response.ok) {
@@ -11,13 +12,17 @@
         }
         return response.text();
         })
-    .then(text => {
-    const lines = text.split('\n');
-    console.log(lines);
-    })
+            .then(text => {
+                // テキストを行ごとに分割して配列に格納
+                const lines = text.split('\n');
+
+                // linesにファイルの各行が格納されます
+                console.log(lines);
 
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
+    })
+
   </script>
 </head>
 <body>
