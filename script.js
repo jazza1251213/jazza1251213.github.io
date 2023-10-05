@@ -1,18 +1,14 @@
-//答えのテキストファイルを読み込む
-function loadTextFile() {
-    const filePath = "ans.txt";
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("ファイルが見つかりませんでした。");
-            }
-            return response.text();
-        })
-        .then(text => {
-            const lines = text.split("\n"); 
-            console.log(lines);
-        })
-}
+//答え用配列を作成
+const filePath = 'ans.txt';
+fetch(filePath)
+.then(response => {
+    return response.text();
+    })
+.then(text => {
+    const lines = text.split('\n');
+})
+
+console.log(lines);
 
 function checkAnswer() {
     const answerInput = document.getElementById("answer");
