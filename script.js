@@ -6,9 +6,8 @@ fetch(filePath)
     })
 .then(text => {
     const lines = text.split('\n');
+    console.log(lines);
 })
-
-console.log(lines);
 
 function checkAnswer() {
     const answerInput = document.getElementById("answer");
