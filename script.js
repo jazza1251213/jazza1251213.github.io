@@ -1,10 +1,27 @@
+//答えのテキストファイルを読み込む
+function loadTextFile() {
+    const filePath = "ans.txt";
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("ファイルが見つかりませんでした。");
+            }
+            return response.text();
+        })
+        .then(text => {
+            const lines = text.split("\n"); 
+            console.log(lines);
+        })
+}
+
 function checkAnswer() {
     const answerInput = document.getElementById("answer");
     const resultElement = document.getElementById("result");
     
-    // 正しい答えをここで設定します
+    // 正解を設定
     const correctAnswer = "〇"; 
-    
+
+    //答えを入力
     const userAnswer = answerInput.value.trim();
     
     if (userAnswer === correctAnswer) {
