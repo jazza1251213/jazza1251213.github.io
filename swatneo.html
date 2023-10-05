@@ -15,7 +15,6 @@
       const ans = text.split('\n');
       console.log(ans);
     })
-
     const filePath2 = 'que.txt';
     fetch(filePath2)
     .then(response => {
@@ -29,7 +28,7 @@
       console.log(que);
     })
 
-    const filePath3 = 'exp.txt';
+      const filePath3 = 'exp.txt';
     fetch(filePath3)
     .then(response => {
       if (!response.ok) {
@@ -41,7 +40,7 @@
       const exp = text.split('\n');
       console.log(exp);
     })
-    
+
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
       if (answer === "〇") {
