@@ -28,6 +28,19 @@
       const que = text.split('\n');
       console.log(que);
     })
+
+      const filePath3 = 'exp.txt';
+    fetch(filePath3)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(text => {
+      const exp = text.split('\n');
+      console.log(exp);
+    })
     
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
