@@ -3,8 +3,8 @@
 <head>
   <title>SWATNEO</title>
   <script>
-    const filePath = 'ans.txt';
-    fetch(filePath)
+    const filePath1 = 'ans.txt';
+    fetch(filePath1)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -16,8 +16,8 @@
       console.log(ans);
     })
 
-    const filePath = 'que.txt';
-    fetch(filePath)
+    const filePath2 = 'que.txt';
+    fetch(filePath2)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
