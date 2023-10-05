@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>〇×判定</title>
+  <title>SWATNEO</title>
   <script>
+    const filePath = 'ans.txt';
+
+    fetch(filePath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+        })
+            .then(text => {
+                // テキストを行ごとに分割して配列に格納
+                const lines = text.split('\n');
+                
+                // linesにファイルの各行が格納されます
+                console.log(lines);
+              
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
 
@@ -15,10 +31,12 @@
   </script>
 </head>
 <body>
-  <h1>〇×判定</h1>
+  <h1>SWATNEO</h1>
   <label for="answer">答えを入力してください（〇または×）：</label>
   <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
   <p id="result"></p>
 </body>
 </html>
+
+              
