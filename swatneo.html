@@ -11,14 +11,11 @@
         throw new Error('Network response was not ok');
         }
         return response.text();
-        })
-            .then(text => {
-                // テキストを行ごとに分割して配列に格納
-                const lines = text.split('\n');
-                
-                // linesにファイルの各行が格納されます
-                console.log(lines);
-              
+    })
+    .then(text => {
+      const lines = text.split('\n');
+      console.log(lines);
+    })
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
 
