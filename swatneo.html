@@ -5,6 +5,12 @@
   <script>
     const filePath1 = 'ans.txt';
     fetch(filePath1)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
     .then(text => {
       const ans = text.split('\n');
       console.log(ans);
@@ -12,6 +18,12 @@
 
     const filePath2 = 'que.txt';
     fetch(filePath2)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
     .then(text => {
       const que = text.split('\n');
       console.log(que);
@@ -19,7 +31,6 @@
     
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
-
       if (answer === "〇") {
         document.getElementById("result").textContent = "正解";
       } else {
@@ -27,12 +38,3 @@
       }
     }
   </script>
-</head>
-<body>
-  <h1>SWATNEO</h1>
-  <label for="answer">答えを入力してください（〇または×）：</label>
-  <input type="text" id="answer" />
-  <button onclick="checkAnswer()">判定</button>
-  <p id="result"></p>
-</body>
-</html>
