@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SWATNEO</title>
+  <title>SWAT NEO</title>
   <script>
     const filePath = 'ans.txt';
 
@@ -12,12 +12,10 @@
         }
         return response.text();
         })
-            .then(text => {
-                // テキストを行ごとに分割して配列に格納
-                const lines = text.split('\n');
-
-                // linesにファイルの各行が格納されます
-                console.log(lines);
+      .then(text => {
+        const lines = text.split('\n');
+        console.log(lines);
+      })
 
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
@@ -26,7 +24,7 @@
   </script>
 </head>
 <body>
-  <h1>SWATNEO</h1>
+  <h1>SWAT NEO</h1>
   <label for="answer">答えを入力してください（〇または×）：</label>
   <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
