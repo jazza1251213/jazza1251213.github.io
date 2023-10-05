@@ -5,8 +5,7 @@ fetch(filePath)
     return response.text();
     })
 .then(text => {
-    const lines = text.split('\n');
-    console.log(lines);
+    const ans = text.split('\n');
 })
 
 function checkAnswer() {
@@ -20,7 +19,7 @@ function checkAnswer() {
     const userAnswer = answerInput.value.trim();
     
     if (userAnswer === correctAnswer) {
-        resultElement.textContent = "正解！";
+        resultElement.textContent = ans;
     } else {
         resultElement.textContent = "不正解。もう一度試してみてください。";
     }
