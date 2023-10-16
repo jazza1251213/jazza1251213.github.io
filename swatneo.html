@@ -50,12 +50,13 @@
     })
 
     function checkAnswer() {
-      var answer = document.getElementById("answer").value;
-      if (answer === "〇") {
+      var UserAnswer = document.getElementById("UserAnswer").value;
+      if (answer === AnswerText[Random]) {
         document.getElementById("result").textContent = "正解";
       } else {
         document.getElementById("result").textContent = "不正解";
       }
+      
     }
     
   </script>
