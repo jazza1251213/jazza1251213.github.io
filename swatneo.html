@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ASWATNEO</title>
+  <title>SWATNEO</title>
   <script>
     
   function getRandomInt(min, max) {
@@ -20,7 +20,7 @@
     })
     .then(text => {
       const AnswerText = text.split('\n');
-      console.log("解答用テキスト　",AnswerText[1]);
+      console.log("解答用テキスト　",AnswerText[Random]);
     })
 
     const QuestionFile = 'que.txt';
@@ -33,7 +33,7 @@
     })
     .then(text => {
       const QuestionText = text.split('\n');
-      console.log("問題用テキスト　",QuestionText);
+      console.log("問題用テキスト　",QuestionText[Random]);
     })
 
     const ExplainFile = 'exp.txt';
@@ -46,7 +46,7 @@
     })
     .then(text => {
       const ExplainText = text.split('\n');
-      console.log("解説用テキスト　",ExplainText);
+      console.log("解説用テキスト　",ExplainText[Random]);
     })
 
     function checkAnswer() {
