@@ -4,9 +4,16 @@
   <title>SWATNEO</title>
   <script>
 
-  const randomNum = getRandomInt(1, 7);
+  function getRandomInt(min, max) {
+    // min（含む）から max（含まない）の範囲内のランダムな整数を生成
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
-console.log(randomNum)
+// 使用例: 1から6の範囲でランダムな整数を生成
+const randomNum = getRandomInt(1, 7); // 1以上7未満の整数が生成されます
+
+console.log("ランダムな整数:", randomNum);
+
     
   const filePath1 = 'ans.txt';
   fetch(filePath1)
