@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>あSWATNEO</title>
+  <title>AAASWATNEO</title>
   <script>
     
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-    const Random = getRandomInt(1, 4);
-    console.log("第　",Random,"　問を出題")
+    const Random = getRandomInt(0, 3);
+    console.log("第",Random,"問を出題")
 
   const AnswerFile = 'ans.txt';
   fetch(AnswerFile)
@@ -56,6 +56,9 @@
         document.getElementById("result").textContent = "不正解";
       }
     }
+
+console.log(AnswerText[0]);
+    
   </script>
   </head>
 <body>
