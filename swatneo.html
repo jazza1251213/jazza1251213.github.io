@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>qSWATNEO</title>
+  <title>SWATNEO</title>
   <script>
 
   function getRandomInt(min, max) {
-    // min（含む）から max（含まない）の範囲内のランダムな整数を生成
     return Math.floor(Math.random() * (max - min)) + min;
-}
+  }
+    const randomNum = getRandomInt(1, 4);
+    console.log("第　",RandomNum,"　問を出題")
 
-// 使用例: 1から6の範囲でランダムな整数を生成
-const randomNum = getRandomInt(1, 7); // 1以上7未満の整数が生成されます
-
-console.log("ランダムな整数:", randomNum);
-
-    
   const filePath1 = 'ans.txt';
   fetch(filePath1)
   .then(response => {
