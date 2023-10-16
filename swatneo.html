@@ -3,15 +3,15 @@
 <head>
   <title>SWATNEO</title>
   <script>
-
+    
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-    const randomNum = getRandomInt(1, 4);
-    console.log("第　",RandomNum,"　問を出題")
+    const Random = getRandomInt(1, 4);
+    console.log("第　",Random,"　問を出題")
 
-  const filePath1 = 'ans.txt';
-  fetch(filePath1)
+  const AnswerFile = 'ans.txt';
+  fetch(AnswerFile)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -19,11 +19,11 @@
       return response.text();
     })
     .then(text => {
-      const ans = text.split('\n');
-      console.log(ans);
+      const AnswerText = text.split('\n');
+      console.log("解答用テキスト　",AnswerText);
     })
-    const filePath2 = 'que.txt';
-    fetch(filePath2)
+    const QuestionFile = 'que.txt';
+    fetch(QuestionFile)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -31,12 +31,12 @@
         return response.text();
     })
     .then(text => {
-      const que = text.split('\n');
-      console.log(que);
+      const QuestionText = text.split('\n');
+      console.log("問題用テキスト　",QuestionText);
     })
 
-    const filePath3 = 'exp.txt';
-    fetch(filePath3)
+    const ExplainFile = 'exp.txt';
+    fetch(ExplainFile)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -44,8 +44,8 @@
         return response.text();
     })
     .then(text => {
-      const exp = text.split('\n');
-      console.log(exp);
+      const ExplainText = text.split('\n');
+      console.log("解説用テキスト　",ExplainText);
     })
 
     function checkAnswer() {
