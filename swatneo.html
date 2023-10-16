@@ -3,13 +3,18 @@
 <head>
   <title>SWATNEO</title>
   <script>
-    const filePath1 = 'ans.txt';
-    fetch(filePath1)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.text();
+
+  const randomNum = getRandomInt(1, 7);
+
+console.log(randomNum)
+    
+  const filePath1 = 'ans.txt';
+  fetch(filePath1)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+      }
+      return response.text();
     })
     .then(text => {
       const ans = text.split('\n');
