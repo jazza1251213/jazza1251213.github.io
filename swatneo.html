@@ -50,8 +50,8 @@
     })
 
     function checkAnswer() {
-      var UserAnswer = document.getElementById("UserAnswer").value;
-      if (UserAnswer === AnswerText[Random]) {
+      var answer = document.getElementById("answer").value;
+      if (answer === AnswerText[Random]) {
         document.getElementById("result").textContent = "正解";
       } else {
         document.getElementById("result").textContent = "不正解";
@@ -63,8 +63,8 @@
   </head>
 <body>
   <h1>AAASWATNEO</h1>
-  <label for="UserAnswer">"QuestionText[Random]"：</label>
-  <input type="text" id="UserAnswer" />
+  <label for="answer">"QuestionText[Random]"：</label>
+  <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
   <p id="result"></p>
 </body>
