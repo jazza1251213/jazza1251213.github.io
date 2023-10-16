@@ -57,9 +57,9 @@
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
       if (answer === "〇") {
-        document.getElementById("result").textContent = "正解";
+        document.getElementById("Result").textContent = "正解";
       } else {
-        document.getElementById("result").textContent = "不正解";
+        document.getElementById("Result").textContent = "不正解";
       }
       
     }
@@ -70,7 +70,7 @@
   <h1>SWATNEO</h1>
   <label for="answer">"問題文"：</label>
   <input type="text" id="answer" />
-  <button onclick="checkAnswer()">判定</button>
-  <p id="result"></p>
+  <button onclick="checkAnswer()">答え合わせ</button>
+  <p id="Result"></p>
 </body>
 </html>
