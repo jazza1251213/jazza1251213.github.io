@@ -3,6 +3,7 @@
 <head>
   <title>SWATNEO</title>
   <script>
+
   
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -51,7 +52,7 @@
 
     function checkAnswer() {
       var answer = document.getElementById("answer").value;
-      if (answer === AnswerText[Random]) {
+      if (answer === "〇") {
         document.getElementById("result").textContent = "正解";
       } else {
         document.getElementById("result").textContent = "不正解";
@@ -62,8 +63,8 @@
   </script>
   </head>
 <body>
-  <h1>AASWATNEO</h1>
-  <label for="answer">"QuestionText[Random]"：</label>
+  <h1>SWATNEO</h1>
+  <label for="answer">"問題文"：</label>
   <input type="text" id="answer" />
   <button onclick="checkAnswer()">判定</button>
   <p id="result"></p>
