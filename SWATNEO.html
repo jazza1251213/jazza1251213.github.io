@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ああSWATNEO</title>
     <script>
       //配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
@@ -55,7 +55,7 @@
       //入力した解答が正しいかを判断する
       function checkAnswer() {
         var UserAnswer = document.getElementById("UserAnswer").value;
-        if (UserAnswer === "〇") {
+        if (UserAnswer === AnswerText[Random].trim()) {
           document.getElementById("Result").textContent = "正解";
         } else {
           document.getElementById("Result").textContent = "不正解";
