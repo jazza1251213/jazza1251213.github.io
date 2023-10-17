@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>1SWATNEO</title>
+    <title>SWATNEO</title>
     <script>
       //配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
@@ -61,11 +61,15 @@
           document.getElementById("Result").textContent = "不正解";
         }
       }
+      
+      // 問題文を表示
+      document.getElementById("Question").textContent = QuestionText[Random];
+
     </script>
   </head>
   <body>
     <h1>SWATNEO</h1>
-    <label for="UserAnswer">問題文：</label>
+    <label for="UserAnswer">Question：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
