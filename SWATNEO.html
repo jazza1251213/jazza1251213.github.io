@@ -55,7 +55,7 @@
       //入力した解答が正しいかを判断する
       function checkAnswer() {
         var UserAnswer = document.getElementById("UserAnswer").value;
-        if (UserAnswer === AnswerText[Random].trim()) {
+        if (UserAnswer === "正解") {
           document.getElementById("Result").textContent = "正解";
         } else {
           document.getElementById("Result").textContent = "不正解";
