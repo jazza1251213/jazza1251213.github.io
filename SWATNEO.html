@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>1SWATNEO</title>
     <script>
       //配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
@@ -51,6 +51,13 @@
           const ExplainText = text.split('\n');
           console.log("解説用テキスト　",ExplainText[Random]);
         })
+
+      //ユーザ画面表示用
+      const Answer = AnswerText[Random]
+      const Question = QuestionText[Random]
+      const Explain = ExplainText[Random]
+
+      console.log(Answer ,Question ,Explain)
       
       //入力した解答が正しいかを判断する
       function checkAnswer() {
