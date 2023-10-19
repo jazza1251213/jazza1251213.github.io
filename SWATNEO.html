@@ -7,11 +7,11 @@
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
       }
-      var Random = getRandomInt(0, 3);
+      const Random = getRandomInt(0, 3);
       console.log("第",Random,"問を出題")
       
       //解答用ファイルを配列に入れる
-      var AnswerFile = 'ans.txt';
+      const AnswerFile = 'ans.txt';
       fetch(AnswerFile)
         .then(response => {
           if (!response.ok) {
@@ -20,12 +20,12 @@
           return response.text();
         })
         .then(text => {
-          var AnswerText = text.split('\n');
+          const AnswerText = text.split('\n');
           console.log("解答用テキスト　",AnswerText[Random]);
         })
       
       //問題用ファイルを配列に入れる
-      var QuestionFile = 'que.txt';
+      const QuestionFile = 'que.txt';
       fetch(QuestionFile)
         .then(response => {
           if (!response.ok) {
@@ -34,12 +34,12 @@
           return response.text();
         })
         .then(text => {
-          var QuestionText = text.split('\n');
+          const QuestionText = text.split('\n');
           console.log("問題用テキスト　",QuestionText[Random]);
         })
       
       //解説用ファイルを配列に入れる
-      var ExplainFile = 'exp.txt';
+      const ExplainFile = 'exp.txt';
       fetch(ExplainFile)
         .then(response => {
           if (!response.ok) {
@@ -48,26 +48,34 @@
           return response.text();
         })
         .then(text => {
-          var ExplainText = text.split('\n');
+          const ExplainText = text.split('\n');
           console.log("解説用テキスト　",ExplainText[Random]);
         })
-
-      var Qestion = QuestionText[Random];
-      
       //入力した解答が正しいかを判断する
       function checkAnswer() {
-        var UserAnswer = document.getElementById("UserAnswer").value;
+        const UserAnswer = document.getElementById("UserAnswer").value;
         if (UserAnswer === "正解") {
           document.getElementById("Result").textContent = "正解";
         } else {
           document.getElementById("Result").textContent = "不正解";
         }
       }
+
+      // 変数を宣言
+const myVariable = "こんにちは、世界！";
+
+// ラベルのテキストを変数の値に設定
+const label = document.getElementById("myLabel");
+label.textContent = myVariable;
+      
     </script>
   </head>
   <body>
-    <h1>2SWATNEO</h1>
+    <h1>3SWATNEO</h1>
     </div>
+
+    <label id="myLabel">ここに変数の値を表示します</label>
+    
     <label for="UserAnswer">Question：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
