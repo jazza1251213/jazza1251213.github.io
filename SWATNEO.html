@@ -51,6 +51,9 @@
           const ExplainText = text.split('\n');
           console.log("解説用テキスト　",ExplainText[Random]);
         })
+
+      const Qestion = QuestionText[Random];
+      console.log(Qestion);
       
       //入力した解答が正しいかを判断する
       function checkAnswer() {
@@ -64,7 +67,8 @@
     </script>
   </head>
   <body>
-    <h1>SWATNEO</h1>
+    <h1>1SWATNEO</h1>
+    </div>
     <label for="UserAnswer">Question：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
