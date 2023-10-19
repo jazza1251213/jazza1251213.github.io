@@ -8,10 +8,10 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
       
-      // 正解を保持する変数
+      // 正解を保持する変数を設定する
       let correctAnswer = "";
       
-      // ページが読み込まれたときに問題をセットアップ
+      // ページが読み込まれたときに問題を決める
       window.onload = function() {
         const Random = getRandomInt(0, 2);
         console.log("第", Random, "問を出題");
@@ -29,7 +29,7 @@
             const AnswerText = text.split('\n');
             console.log("解答用テキスト　", AnswerText[Random]);
             
-            // 正解を設定
+            // 正解を設定する
             correctAnswer = AnswerText[Random];
           });
 
@@ -46,7 +46,7 @@
             const QuestionText = text.split('\n');
             console.log("問題用テキスト　", QuestionText[Random]);
             
-            // 問題文を表示
+            // 問題文を設定する
             document.getElementById("question").textContent = "問題：" + QuestionText[Random];
           });
       };
