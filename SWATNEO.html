@@ -32,6 +32,7 @@
             // 正解を設定する
             correctAnswer = AnswerText[Random];
           });
+
         // 問題用ファイルを配列に入れる
         const QuestionFile = 'que.txt';
         fetch(QuestionFile)
@@ -48,6 +49,7 @@
             // 問題文を設定する
             document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
           });
+
        // 解説用ファイルを配列に入れる
         const ExplainFile = 'exp.txt';
         fetch(ExplainFile)
