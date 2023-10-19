@@ -47,7 +47,7 @@
             console.log("問題用テキスト　", QuestionText[Random]);
             
             // 問題文を表示
-            document.getElementById("question").textContent = QuestionText[Random];
+            document.getElementById("question").textContent = "問題：" + uestionText[Random];
           });
       };
       
@@ -63,8 +63,8 @@
     </script>
   </head>
   <body>
-    <h1>1SWATNEO</h1>
-    <label id="question">問題：</label>
+    <h1>２SWATNEO</h1>
+    <label id="question"></label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
