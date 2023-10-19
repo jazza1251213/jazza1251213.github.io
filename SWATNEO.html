@@ -54,7 +54,7 @@
       //入力した解答が正しいかを判断する
       function checkAnswer() {
         const UserAnswer = document.getElementById("UserAnswer").value;
-        if (UserAnswer === "正解") {
+        if (UserAnswer === QestionText[Random]) {
           document.getElementById("Result").textContent = "正解";
         } else {
           document.getElementById("Result").textContent = "不正解";
@@ -65,7 +65,6 @@
   <body>
     <h1>4SWATNEO</h1>
     </div>
-    <label for="QestionText[Random]">：</label>
     <label for="UserAnswer">：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
