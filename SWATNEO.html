@@ -50,6 +50,24 @@
             document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
           });
       };
+
+       // 解説用ファイルを配列に入れる
+        const ExplainFile = 'exp.txt';
+        fetch(ExplainFile)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(text => {
+            const ExplainText = text.split('\n');
+            console.log("解説用テキスト　", ExplainText[Random]);
+            
+            // 解説文を設定する
+            document.getElementById("Explain").textContent = "解説：" + ExplainText[Random];
+          });
+      };
       
       // 入力した解答が正しいかを判断する
       function checkAnswer() {
@@ -69,5 +87,6 @@
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
+    <p id="Explain"></p>
   </body>
 </html>
