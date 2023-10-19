@@ -11,6 +11,10 @@
       // 正解を保持する変数を設定する
       let correctAnswer = "";
       
+      // 問題と解説を非表示にする
+      document.getElementById("Question").style.display = "none";
+      document.getElementById("Explain").style.display = "none";
+
       // ページが読み込まれたときに問題を決める
       window.onload = function() {
         const Random = getRandomInt(0, 2);
@@ -21,7 +25,7 @@
         fetch(AnswerFile)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw an Error('Network response was not ok');
             }
             return response.text();
           })
@@ -45,9 +49,10 @@
                 const QuestionText = text.split('\n');
                 console.log("問題用テキスト　", QuestionText[Random]);
                 
-                // 問題文を設定する
+                // 問題文を設定し、問題を表示する
                 document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
-                
+                document.getElementById("Question").style.display = "block";
+
                 // 解説用ファイルを配列に入れる
                 const ExplainFile = 'exp.txt';
                 fetch(ExplainFile)
@@ -61,11 +66,9 @@
                     const ExplainText = text.split('\n');
                     console.log("解説用テキスト　", ExplainText[Random]);
                     
-                    // ページ読み込み時に解説を非表示にする
+                    // 解説文を設定し、解説を非表示にする
+                    document.getElementById("Explain").textContent = "解説：" + ExplainText[Random];
                     document.getElementById("Explain").style.display = "none";
-                    
-                    // 解説文を設定する
-                    document.getElementById("ExplainText").textContent = "解説：" + ExplainText[Random];
                   });
               });
           });
@@ -85,13 +88,13 @@
     </script>
   </head>
   <body>
-    <h1>ASWATNEO</h1>
+    <h1>SWATNEO</h1>
     <label id="Question"></label>
     <br>
     <br>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
-    <p id="Explain" id="ExplainText"></p>
+    <p id="Explain"></p>
   </body>
 </html>
