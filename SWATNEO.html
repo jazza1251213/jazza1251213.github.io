@@ -11,6 +11,9 @@
       // 正解を保持する変数を設定する
       let correctAnswer = "";
       
+      // 解説を保持する変数を設定する
+      let explanation = "";
+      
       // ページが読み込まれたときに問題を決める
       window.onload = function() {
         const Random = getRandomInt(0, 2);
@@ -50,7 +53,7 @@
             document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
           });
 
-       // 解説用ファイルを配列に入れる
+        // 解説用ファイルを配列に入れる
         const ExplainFile = 'exp.txt';
         fetch(ExplainFile)
           .then(response => {
@@ -64,7 +67,7 @@
             console.log("解説用テキスト　", ExplainText[Random]);
             
             // 解説文を設定する
-            document.getElementById("Explain").textContent = "解説：" + ExplainText[Random];
+            explanation = ExplainText[Random];
           });
       };
       
@@ -73,6 +76,7 @@
         const UserAnswer = document.getElementById("UserAnswer").value;
         if (UserAnswer === correctAnswer) {
           document.getElementById("Result").textContent = "正解";
+          document.getElementById("Explain").textContent = "解説：" + explanation;
         } else {
           document.getElementById("Result").textContent = "不正解";
         }
@@ -80,7 +84,7 @@
     </script>
   </head>
   <body>
-    <h1>SWATNEO</h1>
+    <h1>あSWATNEO</h1>
     <label id="Question"></label>
     <br>
     <br>
