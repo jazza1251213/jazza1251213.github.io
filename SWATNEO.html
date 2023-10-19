@@ -31,43 +31,43 @@
             
             // 正解を設定する
             correctAnswer = AnswerText[Random];
-          });
-
-        // 問題用ファイルを配列に入れる
-        const QuestionFile = 'que.txt';
-        fetch(QuestionFile)
-          .then(response => {
-            if (!response.ok) {
-              throw an Error('Network response was not ok');
-            }
-            return response.text();
-          })
-          .then(text => {
-            const QuestionText = text.split('\n');
-            console.log("問題用テキスト　", QuestionText[Random]);
             
-            // 問題文を設定する
-            document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
-          });
-          
-        // 解説用ファイルを配列に入れる
-        const ExplainFile = 'exp.txt';
-        fetch(ExplainFile)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.text();
-          })
-          .then(text => {
-            const ExplainText = text.split('\n');
-            console.log("解説用テキスト　", ExplainText[Random]);
-            
-            // ページ読み込み時に解説を非表示にする
-            document.getElementById("Explain").style.display = "none";
-            
-            // 解説文を設定する
-            document.getElementById("ExplainText").textContent = "解説：" + ExplainText[Random];
+            // 問題用ファイルを配列に入れる
+            const QuestionFile = 'que.txt';
+            fetch(QuestionFile)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.text();
+              })
+              .then(text => {
+                const QuestionText = text.split('\n');
+                console.log("問題用テキスト　", QuestionText[Random]);
+                
+                // 問題文を設定する
+                document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
+                
+                // 解説用ファイルを配列に入れる
+                const ExplainFile = 'exp.txt';
+                fetch(ExplainFile)
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                  })
+                  .then(text => {
+                    const ExplainText = text.split('\n');
+                    console.log("解説用テキスト　", ExplainText[Random]);
+                    
+                    // ページ読み込み時に解説を非表示にする
+                    document.getElementById("Explain").style.display = "none";
+                    
+                    // 解説文を設定する
+                    document.getElementById("ExplainText").textContent = "解説：" + ExplainText[Random];
+                  });
+              });
           });
       };
       
