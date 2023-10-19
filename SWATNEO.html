@@ -11,9 +11,6 @@
       // 正解を保持する変数を設定する
       let correctAnswer = "";
       
-      // 解説を保持する変数を設定する
-      let explanation = "";
-      
       // ページが読み込まれたときに問題を決める
       window.onload = function() {
         const Random = getRandomInt(0, 2);
@@ -41,7 +38,7 @@
         fetch(QuestionFile)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw an Error('Network response was not ok');
             }
             return response.text();
           })
@@ -52,7 +49,7 @@
             // 問題文を設定する
             document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
           });
-
+          
         // 解説用ファイルを配列に入れる
         const ExplainFile = 'exp.txt';
         fetch(ExplainFile)
@@ -66,8 +63,11 @@
             const ExplainText = text.split('\n');
             console.log("解説用テキスト　", ExplainText[Random]);
             
+            // ページ読み込み時に解説を非表示にする
+            document.getElementById("Explain").style.display = "none";
+            
             // 解説文を設定する
-            explanation = ExplainText[Random];
+            document.getElementById("ExplainText").textContent = "解説：" + ExplainText[Random];
           });
       };
       
@@ -76,7 +76,8 @@
         const UserAnswer = document.getElementById("UserAnswer").value;
         if (UserAnswer === correctAnswer) {
           document.getElementById("Result").textContent = "正解";
-          document.getElementById("Explain").textContent = "解説：" + explanation;
+          // ボタンクリック時に解説を表示する
+          document.getElementById("Explain").style.display = "block";
         } else {
           document.getElementById("Result").textContent = "不正解";
         }
@@ -84,13 +85,13 @@
     </script>
   </head>
   <body>
-    <h1>あSWATNEO</h1>
+    <h1>SWATNEO</h1>
     <label id="Question"></label>
     <br>
     <br>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
-    <p id="Explain"></p>
+    <p id="Explain" id="ExplainText"></p>
   </body>
 </html>
