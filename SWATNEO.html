@@ -60,23 +60,13 @@
           document.getElementById("Result").textContent = "不正解";
         }
       }
-
-      // 変数を宣言
-const myVariable = "こんにちは、世界！";
-
-// ラベルのテキストを変数の値に設定
-const label = document.getElementById("myLabel");
-label.textContent = myVariable;
-      
     </script>
   </head>
   <body>
     <h1>3SWATNEO</h1>
     </div>
-
-    <label id="myLabel">ここに変数の値を表示します</label>
-    
-    <label for="UserAnswer">Question：</label>
+    <label for="QestionText[Random]">：</label>
+    <label for="UserAnswer">：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
