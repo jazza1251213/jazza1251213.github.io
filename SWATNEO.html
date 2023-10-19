@@ -3,59 +3,58 @@
   <head>
     <title>SWATNEO</title>
     <script>
-      //配列用の数字をランダムに選ぶ
+      // 配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-      const Random = getRandomInt(0, 3);
-      console.log("第",Random,"問を出題")
       
-      //解答用ファイルを配列に入れる
-      const AnswerFile = 'ans.txt';
-      fetch(AnswerFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.text();
-        })
-        .then(text => {
-          const AnswerText = text.split('\n');
-          console.log("解答用テキスト　",AnswerText[Random]);
-        })
+      // 正解を保持する変数
+      let correctAnswer = "";
       
-      //問題用ファイルを配列に入れる
-      const QuestionFile = 'que.txt';
-      fetch(QuestionFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.text();
-        })
-        .then(text => {
-          const QuestionText = text.split('\n');
-          console.log("問題用テキスト　",QuestionText[Random]);
-        })
+      // ページが読み込まれたときに問題をセットアップ
+      window.onload = function() {
+        const Random = getRandomInt(0, 2);
+        console.log("第", Random, "問を出題");
+        
+        // 解答用ファイルを配列に入れる
+        const AnswerFile = 'ans.txt';
+        fetch(AnswerFile)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(text => {
+            const AnswerText = text.split('\n');
+            console.log("解答用テキスト　", AnswerText[Random]);
+            
+            // 正解を設定
+            correctAnswer = AnswerText[Random];
+          });
+
+        // 問題用ファイルを配列に入れる
+        const QuestionFile = 'que.txt';
+        fetch(QuestionFile)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then(text => {
+            const QuestionText = text.split('\n');
+            console.log("問題用テキスト　", QuestionText[Random]);
+            
+            // 問題文を表示
+            document.getElementById("question").textContent = "Question：" + QuestionText[Random];
+          });
+      };
       
-      //解説用ファイルを配列に入れる
-      const ExplainFile = 'exp.txt';
-      fetch(ExplainFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.text();
-        })
-        .then(text => {
-          const ExplainText = text.split('\n');
-          console.log("解説用テキスト　",ExplainText[Random]);
-        })
-      
-      //入力した解答が正しいかを判断する
+      // 入力した解答が正しいかを判断する
       function checkAnswer() {
-        var UserAnswer = document.getElementById("UserAnswer").value;
-        if (UserAnswer === "正解") {
+        const UserAnswer = document.getElementById("UserAnswer").value;
+        if (UserAnswer === correctAnswer) {
           document.getElementById("Result").textContent = "正解";
         } else {
           document.getElementById("Result").textContent = "不正解";
@@ -64,8 +63,8 @@
     </script>
   </head>
   <body>
-    <h1>SWATNEO</h1>
-    <label for="UserAnswer">Question：</label>
+    <h1>1SWATNEO</h1>
+    <label id="question">Question：</label>
     <input type="text" id="UserAnswer" />
     <button onclick="checkAnswer()">解答する</button>
     <p id="Result"></p>
