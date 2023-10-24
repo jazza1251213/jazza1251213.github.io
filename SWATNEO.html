@@ -8,14 +8,9 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
       
-      // 正解を保持する変数を設定する
-      let correctAnswer = "";
       //シャッフル後の配列を作成
       const AnswerAraay = [];
-      const QuestionArray = [];
-      const ExplainArray = [];
-
-for (let i = 2; i < 0; i--) {
+const i = 2
         
         const Random = getRandomInt(0, i);
         console.log("数字　", Random);
@@ -30,60 +25,21 @@ for (let i = 2; i < 0; i--) {
             return response.text();
           })
           .then(text => {
-            const AnswerText = text.split('\n');
+            
+})
+                const AnswerText = text.split('\n');
             console.log("解答用テキスト　", AnswerText);
 const AnswerTextRemove = random; // 削除したい要素のインデックス
 AnswerText.splice(AnswerTextRemove, Random);
             console.log("リムーブ解答用テキスト　", AnswerText);
 AnswerArray.push(AnswerText[Random]);
             console.log("シャッフル解答用配列　", AnswerArray);
-// 問題用ファイルを配列に入れる
-        const QuestionFile = 'que.txt';
-        fetch(QuestionFile)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.text();
-          })
-          .then(text => {
-            const QuestionText = text.split('\n');
-            console.log("問題用テキスト　", QuestionText);
-            const QuestionTextRemove = random; // 削除したい要素のインデックス
-QestionText.splice(QuestionTextRemove, Random);  
-            console.log("リムーブ問題用テキスト　", QuestionText);
-QestionArray.push(QuestionText[Random]);
-            console.log("シャッフル問題用テキスト　", QuestionArray);            
-
-
-       // 解説用ファイルを配列に入れる
-        const ExplainFile = 'exp.txt';
-        fetch(ExplainFile)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.text();
-          })
-          .then(text => {
-            const ExplainText = text.split('\n');
-            console.log("解説用テキスト　", ExplainText[Random]);
-            const ExplainTextRemove = random; // 削除したい要素のインデックス
-ExplainText.splice(ExplainTextRemove, Random);
-            console.log("リムーブ解説用テキスト　", ExplainText);
-ExplainArray.push(ExplainText[Random]);
-          console.log("シャッフル解説用配列　", ExplainArray);
-            
-
-          });
-      };
-      }
       
  
     </script>
   </head>
   <body>
-    <h1>１SWATNEO</h1>
+    <h1>SWATNEO</h1>
 
   </body>
 </html>
