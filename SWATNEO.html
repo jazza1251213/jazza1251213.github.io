@@ -4,8 +4,8 @@
     <title>SWATNEO</title>
     <script>
       //新しい配列を作成
-      const QWEArray = new Array();
-      console.log("配列　" , QWEArray);
+      const SisakuArray = new Array();
+      console.log("配列　" , SisakuArray);
       
       // 配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
@@ -33,9 +33,12 @@
             const AnswerText = text.split('\n');
             console.log("解答用テキスト　", AnswerText[Random]);
 
-            QWEArray.push(AnswerText[Random]);
-            console.log("追加後　", QWEArray);
-            
+          　//配列に要素を追加
+            SisakuArray.push(AnswerText[Random]);
+            console.log("追加後　", SisakuArray);
+            //配列から要素を削除
+            AnswerText.splice(Random, 1);
+            console.log("削除後　" , AnswerText);
             
             // 正解を設定する
             correctAnswer = AnswerText[Random];
