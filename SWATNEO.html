@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ASWATNEO</title>
     <script>
+      //新しい配列を作成
+      const Array = new Array();
+      console.log("配列　" , Array);
+      
       // 配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,6 +32,10 @@
           .then(text => {
             const AnswerText = text.split('\n');
             console.log("解答用テキスト　", AnswerText[Random]);
+
+            Array.push(AnswerText[Random]);
+            console.log("追加後　", Array);
+            
             
             // 正解を設定する
             correctAnswer = AnswerText[Random];
