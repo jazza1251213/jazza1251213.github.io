@@ -23,7 +23,7 @@
           return response.text();
         })
         .then(text => {
-          AnswerText = text.split(/\r?\n/);
+          AnswerText = text.replace(/\n+$/, '').split('\n');
           prepareData();
         });
 
@@ -36,7 +36,7 @@
           return response.text();
         })
         .then(text => {
-          QuestionText = text.split(/\r?\n/);
+          QuestionText = text.replace(/\n+$/, '').split('\n');
           prepareData();
         });
 
@@ -49,7 +49,7 @@
           return response.text();
         })
         .then(text => {
-          ExplainText = text.split(/\r?\n/);
+          ExplainText = text.replace(/\n+$/, '').split('\n');
           prepareData();
         });
 
