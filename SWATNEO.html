@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ASWATNEO</title>
+    <title>SWATNEO</title>
     <script>
       const AnswerArray = [];
       const QuestionArray = [];
@@ -60,16 +60,15 @@
 
             AnswerArray.push(AnswerText[Random]);
             QuestionArray.push(QuestionText[Random]);
-            ExplainArray.push(ExplainText[Ramdom]);
+            ExplainArray.push(ExplainText[Random]);
 
             AnswerText.splice(Random, 1);
             QuestionText.splice(Random, 1);
             ExplainText.splice(Random, 1);
           }
-          
           if (AnswerArray.length === 2) {
             displayQuestion(currentIndex);
-          } 
+          }
         }
       }
 
