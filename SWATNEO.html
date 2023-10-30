@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ASWATNEO</title>
     <script>
       //新しい配列を作成
       const AnswerArray = new Array();
@@ -16,19 +16,7 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
 
-      // 正解を保持する変数を設定する
-      let correctAnswer = "";
-
-      for (let i = 0; i < 2; i++) {
-        
-        // ページが読み込まれたときに問題を決め
-        window.onload = function() {
-        const Random = getRandomInt(0, i);
-        console.log("第", Random, "問を出題");
-        
-      }
-        
-        // 解答用ファイルを配列に入れる
+      // 解答用ファイルを配列に入れる
         const AnswerFile = 'ans.txt';
         fetch(AnswerFile)
           .then(response => {
@@ -39,20 +27,9 @@
           })
           .then(text => {
             const AnswerText = text.split('\n');
-            console.log("解答用テキスト　", AnswerText[Random]);
+          }
 
-          　//配列に要素を追加
-            SisakuArray.push(AnswerText[Random]);
-            console.log("追加後　", SisakuArray);
-            //配列から要素を削除
-            AnswerText.splice(Random, 1);
-            console.log("削除後　" , AnswerText);
-            
-            // 正解を設定する
-            correctAnswer = AnswerText[Random];
-          });
-
-        // 問題用ファイルを配列に入れる
+      // 問題用ファイルを配列に入れる
         const QuestionFile = 'que.txt';
         fetch(QuestionFile)
           .then(response => {
@@ -63,13 +40,9 @@
           })
           .then(text => {
             const QuestionText = text.split('\n');
-            console.log("問題用テキスト　", QuestionText[Random]);
-            
-            // 問題文を設定する
-            document.getElementById("Question").textContent = "問題：" + QuestionText[Random];
-          });
+          }
 
-       // 解説用ファイルを配列に入れる
+      // 解説用ファイルを配列に入れる
         const ExplainFile = 'exp.txt';
         fetch(ExplainFile)
           .then(response => {
@@ -80,25 +53,60 @@
           })
           .then(text => {
             const ExplainText = text.split('\n');
-            console.log("解説用テキスト　", ExplainText[Random]);
-            
-            // 解説文を設定し、非表示にする
-            document.getElementById("Explain").textContent = "解説：" + ExplainText[Random];
-            document.getElementById("Explain").style.display = "none";
-          });
-      };
-      
-      // 入力した解答が正しいかを判断する
-      function checkAnswer() {
-        const UserAnswer = document.getElementById("UserAnswer").value;
-        if (UserAnswer === correctAnswer) {
-          document.getElementById("Result").textContent = "正解";
-        } else {
-          document.getElementById("Result").textContent = "不正解";
+          }
+
+      // 正解を保持する変数を設定する
+      let correctAnswer = "";
+
+      for (let i = 2; i < 0; i--) {
+        
+        // ページが読み込まれたときに問題を決める
+        window.onload = function() {
+        const Random = getRandomInt(0, i);
+        console.log("数字　", Random,);
         }
-        // ボタンを押した後に解説を表示する
-        document.getElementById("Explain").style.display = "block";
+          
+        //配列に要素を追加
+        AnswerArray.push(AnswerText[Random]);
+        QuestionArray.push(QuestionText[Random]);
+        ExplainArray.push(ExplainText[Random]);
+        console.log("答え配列追加後　", AnwerArray);
+        console.log("回答配列追加後　", QuestionArray);
+        console.log("解説配列追加後　", ExplainArray);
+          
+        //配列から要素を削除
+        AnswerText.splice(Random, 1);
+        AnswerText.splice(Random, 1);
+        AnswerText.splice(Random, 1);
+        console.log("答えテキスト削除後　" , AnswerText);
+        console.log("回答テキスト削除後　" , QuestionText);
+        console.log("解説テキスト削除後　" , ExplainText);
       }
+
+       for (let j = 0; i < 2; i++;) {
+         // 正解を設定する
+         correctAnswer = AnswerArray[j];
+
+         // 問題文を設定する
+            document.getElementById("Question").textContent = "問題：" + QuestionArray[j];
+         
+         // 解説文を設定し、非表示にする
+            document.getElementById("Explain").textContent = "解説：" + ExplainArray[j];
+            document.getElementById("Explain").style.display = "none";
+
+      
+          // 入力した解答が正しいかを判断する
+          function checkAnswer() {
+            const UserAnswer = document.getElementById("UserAnswer").value;
+            if (UserAnswer === correctAnswer) {
+              document.getElementById("Result").textContent = "正解";
+            } else {
+              document.getElementById("Result").textContent = "不正解";}
+            
+          // ボタンを押した後に解説を表示する
+            document.getElementById("Explain").style.display = "block";
+          }
+       }
     </script>
   </head>
   <body>
