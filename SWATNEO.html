@@ -26,7 +26,6 @@
           AnswerText = text.split('\n');
           prepareData();
         });
-      AnswerText.pop();
 
       const QuestionFile = 'que.txt';
       fetch(QuestionFile)
@@ -40,7 +39,6 @@
           QuestionText = text.split('\n');
           prepareData();
         });
-      QuestionText.pop();
 
       const ExplainFile = 'exp.txt';
       fetch(ExplainFile)
@@ -54,7 +52,6 @@
           ExplainText = text.split('\n');
           prepareData();
         });
-      ExplainText.pop();
 
       function prepareData() {
         if (AnswerText && QuestionText && ExplainText) {
@@ -69,9 +66,10 @@
             QuestionText.splice(Random, 1);
             ExplainText.splice(Random, 1);
           }
+          
           if (AnswerArray.length === 3) {
             displayQuestion(currentIndex);
-          }
+          } 
         }
       }
 
@@ -92,7 +90,7 @@
         document.getElementById("CheckAnswer").onclick = checkAnswer;
 
         document.getElementById("NextQuestion").onclick = function() {
-          if (currentIndex + 1 < 2) {
+          if (currentIndex + 1 < 3) {
             currentIndex++;
             displayQuestion(currentIndex);
           }
