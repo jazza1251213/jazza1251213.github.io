@@ -5,20 +5,15 @@
     <script>
       // 新しい配列を作成
       const AnswerArray = [];
-      console.log("答え配列 ", AnswerArray);
       const QuestionArray = [];
-      console.log("問題配列 ", QuestionArray);
       const ExplainArray = [];
-      console.log("解説配列 ", ExplainArray);
 
-      // 配列用の数字をランダムに選ぶ
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
 
       let AnswerText, QuestionText, ExplainText;
 
-      // 解答用ファイルを配列に入れる
       const AnswerFile = 'ans.txt';
       fetch(AnswerFile)
         .then(response => {
@@ -29,9 +24,9 @@
         })
         .then(text => {
           AnswerText = text.split('\n');
+          prepareData();
         });
 
-      // 問題用ファイルを配列に入れる
       const QuestionFile = 'que.txt';
       fetch(QuestionFile)
         .then(response => {
@@ -42,9 +37,9 @@
         })
         .then(text => {
           QuestionText = text.split('\n');
+          prepareData();
         });
 
-      // 解説用ファイルを配列に入れる
       const ExplainFile = 'exp.txt';
       fetch(ExplainFile)
         .then(response => {
@@ -55,55 +50,48 @@
         })
         .then(text => {
           ExplainText = text.split('\n');
+          prepareData();
         });
 
-      // ページが読み込まれたときに問題を決める
-      window.onload = function() {
-        for (let i = 2; i > 0; i--) {
-          const Random = getRandomInt(0, i);
-          console.log("数字 ", Random);
+      function prepareData() {
+        if (AnswerText && QuestionText && ExplainText) {
+          for (let i = 0; i < 2; i++) {
+            const Random = getRandomInt(0, AnswerText.length - 1);
 
-          // 配列に要素を追加
-          AnswerArray.push(AnswerText[Random]);
-          QuestionArray.push(QuestionText[Random]);
-          ExplainArray.push(ExplainText[Random]);
-          console.log("答え配列追加後 ", AnswerArray);
-          console.log("問題配列追加後 ", QuestionArray);
-          console.log("解説配列追加後 ", ExplainArray);
+            AnswerArray.push(AnswerText[Random]);
+            QuestionArray.push(QuestionText[Random]);
+            ExplainArray.push(ExplainText[Random]);
 
-          // 配列から要素を削除
-          AnswerText.splice(Random, 1);
-          QuestionText.splice(Random, 1);
-          ExplainText.splice(Random, 1);
-          console.log("答えテキスト削除後 ", AnswerText);
-          console.log("問題テキスト削除後 ", QuestionText);
-          console.log("解説テキスト削除後 ", ExplainText);
-        }
-
-        for (let j = 0; j < 2; j++) {
-          let correctAnswer = AnswerArray[j];
-
-          // 問題文を設定する
-          document.getElementById("Question").textContent = "問題：" + QuestionArray[j];
-
-          // 解説文を設定し、非表示にする
-          document.getElementById("Explain").textContent = "解説：" + ExplainArray[j];
-          document.getElementById("Explain").style.display = "none";
-
-          // 入力した解答が正しいかを判断する
-          function checkAnswer() {
-            const UserAnswer = document.getElementById("UserAnswer").value;
-            if (UserAnswer === correctAnswer) {
-              document.getElementById("Result").textContent = "正解";
-            } else {
-              document.getElementById("Result").textContent = "不正解";
-            }
-
-            // ボタンを押した後に解説を表示する
-            document.getElementById("Explain").style.display = "block";
+            AnswerText.splice(Random, 1);
+            QuestionText.splice(Random, 1);
+            ExplainText.splice(Random, 1);
           }
+          displayQuestion(0);
         }
-      };
+      }
+
+      function displayQuestion(index) {
+        let correctAnswer = AnswerArray[index];
+
+        document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
+        document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
+        document.getElementById("Explain").style.display = "none";
+
+        function checkAnswer() {
+          const UserAnswer = document.getElementById("UserAnswer").value;
+          const resultElement = document.getElementById("Result");
+          resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
+          document.getElementById("Explain").style.display = "block";
+        }
+
+        document.getElementById("CheckAnswer").onclick = checkAnswer;
+
+        document.getElementById("NextQuestion").onclick = function() {
+          if (index + 1 < 2) {
+            displayQuestion(index + 1);
+          }
+        };
+      }
     </script>
   </head>
   <body>
@@ -111,8 +99,9 @@
     <label id="Question"></label>
     <br><br>
     <input type="text" id="UserAnswer" />
-    <button onclick="checkAnswer()">解答する</button>
+    <button id="CheckAnswer">解答する</button>
     <p id="Result"></p>
     <p id="Explain"></p>
+    <button id="NextQuestion">次の問題</button>
   </body>
 </html>
