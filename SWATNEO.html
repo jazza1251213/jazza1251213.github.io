@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ASWATNEO</title>
     <script>
       const AnswerArray = [];
       const QuestionArray = [];
@@ -23,7 +23,7 @@
           return response.text();
         })
         .then(text => {
-          AnswerText = text.split('\n');
+          AnswerText = text.split('\n').map(line => line.trim());
           prepareData();
         });
 
@@ -36,7 +36,7 @@
           return response.text();
         })
         .then(text => {
-          QuestionText = text.split('\n');
+          QuestionText = text.split('\n').map(line => line.trim());
           prepareData();
         });
 
@@ -49,7 +49,7 @@
           return response.text();
         })
         .then(text => {
-          ExplainText = text.split('\n');
+          ExplainText = text.split('\n').map(line => line.trim());
           prepareData();
         });
 
@@ -67,7 +67,7 @@
             ExplainText.splice(Random, 1);
           }
           
-          if (AnswerArray.length === 3) {
+          if (AnswerArray.length === 2) {
             displayQuestion(currentIndex);
           } 
         }
@@ -90,7 +90,7 @@
         document.getElementById("CheckAnswer").onclick = checkAnswer;
 
         document.getElementById("NextQuestion").onclick = function() {
-          if (currentIndex + 1 < 3) {
+          if (currentIndex + 1 < 2) {
             currentIndex++;
             displayQuestion(currentIndex);
           }
