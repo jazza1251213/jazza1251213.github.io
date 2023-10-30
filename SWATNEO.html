@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ASWATNEO</title>
     <script>
       const AnswerArray = [];
       const QuestionArray = [];
@@ -26,6 +26,7 @@
           AnswerText = text.split('\n');
           prepareData();
         });
+      AnswerText.pop();
 
       const QuestionFile = 'que.txt';
       fetch(QuestionFile)
@@ -39,6 +40,7 @@
           QuestionText = text.split('\n');
           prepareData();
         });
+      QuestionText.pop();
 
       const ExplainFile = 'exp.txt';
       fetch(ExplainFile)
@@ -52,6 +54,7 @@
           ExplainText = text.split('\n');
           prepareData();
         });
+      ExplainText.pop();
 
       function prepareData() {
         if (AnswerText && QuestionText && ExplainText) {
@@ -60,13 +63,13 @@
 
             AnswerArray.push(AnswerText[Random]);
             QuestionArray.push(QuestionText[Random]);
-            ExplainArray.push(ExplainText[Random]);
+            ExplainArray.push(ExplainText[Ramdom]);
 
             AnswerText.splice(Random, 1);
             QuestionText.splice(Random, 1);
             ExplainText.splice(Random, 1);
           }
-          if (AnswerArray.length === 2) {
+          if (AnswerArray.length === 3) {
             displayQuestion(currentIndex);
           }
         }
