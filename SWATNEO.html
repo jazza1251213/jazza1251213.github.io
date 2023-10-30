@@ -2,6 +2,47 @@
 <html>
   <head>
     <title>SWATNEO</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      #UserAnswer {
+        padding: 5px;
+        margin: 5px 0;
+      }
+
+      #CheckAnswer, #NextQuestion {
+        padding: 8px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 5px 0;
+      }
+
+      #CheckAnswer:hover, #NextQuestion:hover {
+        background-color: #45a049;
+      }
+
+      #Result {
+        font-weight: bold;
+      }
+
+      #Explain {
+        display: none;
+        font-style: italic;
+        color: #555;
+      }
+    </style>
     <script>
       const AnswerArray = [];
       const QuestionArray = [];
