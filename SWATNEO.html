@@ -3,16 +3,16 @@
   <head>
     <title>SWATNEO</title>
     <script>
-      // 新しい配列を作成
       const AnswerArray = [];
       const QuestionArray = [];
       const ExplainArray = [];
 
+      let AnswerText, QuestionText, ExplainText;
+      let currentIndex = 0;
+
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-
-      let AnswerText, QuestionText, ExplainText;
 
       const AnswerFile = 'ans.txt';
       fetch(AnswerFile)
@@ -66,7 +66,9 @@
             QuestionText.splice(Random, 1);
             ExplainText.splice(Random, 1);
           }
-          displayQuestion(0);
+          if (AnswerArray.length === 2) {
+            displayQuestion(currentIndex);
+          }
         }
       }
 
@@ -87,8 +89,9 @@
         document.getElementById("CheckAnswer").onclick = checkAnswer;
 
         document.getElementById("NextQuestion").onclick = function() {
-          if (index + 1 < 2) {
-            displayQuestion(index + 1);
+          if (currentIndex + 1 < 2) {
+            currentIndex++;
+            displayQuestion(currentIndex);
           }
         };
       }
