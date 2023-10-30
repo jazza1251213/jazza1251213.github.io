@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>ASWATNEO</title>
     <script>
       const AnswerArray = [];
       const QuestionArray = [];
@@ -23,7 +23,7 @@
           return response.text();
         })
         .then(text => {
-          AnswerText = text.split('\n').map(line => line.trim());
+          AnswerText = text.split(/\r?\n/);
           prepareData();
         });
 
@@ -36,7 +36,7 @@
           return response.text();
         })
         .then(text => {
-          QuestionText = text.split('\n').map(line => line.trim());
+          QuestionText = text.split(/\r?\n/);
           prepareData();
         });
 
@@ -49,7 +49,7 @@
           return response.text();
         })
         .then(text => {
-          ExplainText = text.split('\n').map(line => line.trim());
+          ExplainText = text.split(/\r?\n/);
           prepareData();
         });
 
