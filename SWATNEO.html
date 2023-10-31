@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SWATNEO</title>
+    <title>CSSWATNEO</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -9,20 +9,15 @@
 
       h1 {
         text-align: left;
-        font-size: 80px;
-        color: #202020;
       }
 
       label {
-        font-weight: nomal;
-        font-size: 50px;
-        color: #202020;
+        font-weight: bold;
       }
 
       #UserAnswer {
         padding: 5px;
         margin: 5px 0;
-        font-size: 40px;
       }
 
       #CheckAnswer, #NextQuestion {
@@ -32,24 +27,20 @@
         border: none;
         cursor: pointer;
         margin: 5px 0;
-        font-size: 30px;
       }
 
       #CheckAnswer:hover, #NextQuestion:hover {
         background-color: #e4007f;
-        font-size: 30px;
       }
 
       #Result {
-        font-weight: nomal;
-        font-size: 40px;
+        font-weight: bold;
       }
 
       #Explain {
         display: none;
-        font-style: nomal;
-        color: #606060;
-        font-size: 40px;
+        font-style: italic;
+        color: #555;
       }
     </style>
     <script>
@@ -68,7 +59,7 @@
       fetch(AnswerFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
+            throw new Error('ネットワークの応答が問題があります');
           }
           return response.text();
         })
@@ -81,7 +72,7 @@
       fetch(QuestionFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
+            throw new Error('ネットワークの応答が問題があります');
           }
           return response.text();
         })
@@ -94,7 +85,7 @@
       fetch(ExplainFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
+            throw new Error('ネットワークの応答が問題があります');
           }
           return response.text();
         })
@@ -134,7 +125,6 @@
           const resultElement = document.getElementById("Result");
           resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
           document.getElementById("Explain").style.display = "block";
-          document.getElementById("result").style.display = "block";
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
