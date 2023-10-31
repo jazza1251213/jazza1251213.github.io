@@ -68,7 +68,7 @@
       fetch(AnswerFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答が問題があります');
+            throw new Error('ネットワークの応答に問題があります');
           }
           return response.text();
         })
@@ -81,7 +81,7 @@
       fetch(QuestionFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答が問題があります');
+            throw new Error('ネットワークの応答に問題があります');
           }
           return response.text();
         })
@@ -94,7 +94,7 @@
       fetch(ExplainFile)
         .then(response => {
           if (!response.ok) {
-            throw new Error('ネットワークの応答が問題があります');
+            throw new Error('ネットワークの応答に問題があります');
           }
           return response.text();
         })
@@ -134,6 +134,7 @@
           const resultElement = document.getElementById("Result");
           resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
           document.getElementById("Explain").style.display = "block";
+          document.getElementById("result").style.display = "block";
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
