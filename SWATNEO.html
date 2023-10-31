@@ -43,6 +43,7 @@
       #Result {
         font-weight: nomal;
         font-size: 40px;
+        display: none; /* Initially hidden */
       }
 
       #Explain {
@@ -132,16 +133,17 @@
         function checkAnswer() {
           const UserAnswer = document.getElementById("UserAnswer").value;
           const resultElement = document.getElementById("Result");
-          resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
+          resultElement.textContent = UserAnswer === correctAnswer ? "正解" : "不正解";
           document.getElementById("Explain").style.display = "block";
-          document.getElementById("result").style.display = "block";
+          resultElement.style.display = "block"; // Show result on user's answer
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
 
-        document.getElementById("NextQuestion").onclick = function() {
+        document.getElementById("NextQuestion").onclick = function () {
           if (currentIndex + 1 < 10) {
             currentIndex++;
+            document.getElementById("Result").style.display = "none"; // Hide result for the next question
             displayQuestion(currentIndex);
           }
         };
