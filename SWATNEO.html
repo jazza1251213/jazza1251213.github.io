@@ -134,6 +134,9 @@
           const resultElement = document.getElementById("Result");
           resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
           document.getElementById("Explain").style.display = "block";
+          document.getElementById("Result").textContent = ""; // テキストをクリアする
+  document.getElementById("Result").style.display = "none";
+
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
