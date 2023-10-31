@@ -128,15 +128,16 @@
         document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
         document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
         document.getElementById("Explain").style.display = "none";
+        document.getElementById("Result").textContent = ""; // テキストをクリアする
+          document.getElementById("Result").style.display = "none";
+
 
         function checkAnswer() {
           const UserAnswer = document.getElementById("UserAnswer").value;
           const resultElement = document.getElementById("Result");
           resultElement.textContent = (UserAnswer === correctAnswer) ? "正解" : "不正解";
           document.getElementById("Explain").style.display = "block";
-          document.getElementById("Result").textContent = ""; // テキストをクリアする
-  document.getElementById("Result").style.display = "none";
-
+          
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
