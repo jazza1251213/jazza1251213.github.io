@@ -54,7 +54,6 @@
       }
     </style>
     <script>
-      // JavaScriptコード
       const AnswerArray = [];
       const QuestionArray = [];
       const ExplainArray = [];
@@ -62,40 +61,66 @@
       let AnswerText, QuestionText, ExplainText;
       let currentIndex = 0;
 
-      // 以降は前半のfetch関数やprepareData関数は変更していません
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
 
-      function displayQuestion(index) {
-        let correctAnswer = AnswerArray[index];
+      const AnswerFile = 'ans.txt';
+      fetch(AnswerFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('ネットワークの応答に問題があります');
+          }
+          return response.text();
+        })
+        .then(text => {
+          AnswerText = text.replace(/\n+$/, '').split('\n');
+          prepareData();
+        });
 
-        document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
-        document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
-        document.getElementById("Explain").style.display = "none";
-        
-        function checkAnswer() {
-          const UserAnswer = document.getElementById("UserAnswer").value;
-          const resultElement = document.getElementById("Result");
-          const nextQuestionButton = document.getElementById("NextQuestion");
+      const QuestionFile = 'que.txt';
+      fetch(QuestionFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('ネットワークの応答に問題があります');
+          }
+          return response.text();
+        })
+        .then(text => {
+          QuestionText = text.replace(/\n+$/, '').split('\n');
+          prepareData();
+        });
 
-          resultElement.textContent = UserAnswer === correctAnswer ? "正解" : "不正解";
-          document.getElementById("Explain").style.display = "block";
-          resultElement.style.display = "block";
-          nextQuestionButton.style.display = "block";
-        }
+      const ExplainFile = 'exp.txt';
+      fetch(ExplainFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('ネットワークの応答に問題があります');
+          }
+          return response.text();
+        })
+        .then(text => {
+          ExplainText = text.replace(/\n+$/, '').split('\n');
+          prepareData();
+        });
 
-        document.getElementById("CheckAnswer").onclick = checkAnswer;
+      function prepareData() {
+        if (AnswerText && QuestionText && ExplainText) {
+          for (let i = 0; i < 10; i++) {
+            const Random = getRandomInt(0, AnswerText.length - 1);
 
-        document.getElementById("NextQuestion").onclick = function () {
-          if (currentIndex + 1 < 10) {
-            currentIndex++;
-            document.getElementById("Result").style.display = "none";
-            document.getElementById("NextQuestion").style.display = "none";
+            AnswerArray.push(AnswerText[Random]);
+            QuestionArray.push(QuestionText[Random]);
+            ExplainArray.push(ExplainText[Random]);
 
-            // 回答欄をクリアする
-            document.getElementById("UserAnswer").value = '';
-
+            AnswerText.splice(Random, 1);
+            QuestionText.splice(Random, 1);
+            ExplainText.splice(Random, 1);
+          }
+          if (AnswerArray.length === 10) {
             displayQuestion(currentIndex);
           }
-        };
+        }
       }
 
       function displayQuestion(index) {
