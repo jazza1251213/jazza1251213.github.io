@@ -126,6 +126,7 @@
       function displayQuestion(index) {
         let correctAnswer = AnswerArray[index];
 
+        document.getElementById("UserAnswer").value = '';
         document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
         document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
         document.getElementById("Explain").style.display = "none";
