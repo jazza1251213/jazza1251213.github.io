@@ -150,7 +150,14 @@
             document.getElementById("Result").style.display = "none"; // Hide result for the next question
             document.getElementById("NextQuestion").style.display = "none"; // Hide NextQuestion for the next question
             displayQuestion(currentIndex);
-          }
+          }else {
+                document.getElementById("Question").textContent = "終了";
+                document.getElementById("UserAnswer").style.display = "none";
+                document.getElementById("CheckAnswer").style.display = "none";
+                document.getElementById("Explain").style.display = "none";
+                document.getElementById("NextQuestion").style.display = "none";
+                document.getElementById("Result").style.display = "none";
+            }
         };
       }
     </script>
