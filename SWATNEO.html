@@ -123,6 +123,8 @@
         }
       }
 
+      let correctCount = 0;
+
       function displayQuestion(index) {
         let correctAnswer = AnswerArray[index];
 
@@ -136,7 +138,13 @@
           const resultElement = document.getElementById("Result");
           const nextQuestionButton = document.getElementById("NextQuestion");
 
+          const isCorrect = UserAnswer === correctAnswer;
           resultElement.textContent = UserAnswer === correctAnswer ? "正解" : "不正解";
+          
+          if (isCorrect) {
+            correctCount++;
+          }
+          
           document.getElementById("Explain").style.display = "block";
           resultElement.style.display = "block"; // Show result on user's answer
           nextQuestionButton.style.display = "block"; // Show NextQuestion after user's answer
@@ -151,12 +159,13 @@
             document.getElementById("NextQuestion").style.display = "none"; // Hide NextQuestion for the next question
             displayQuestion(currentIndex);
           }else {
-                document.getElementById("Question").textContent = "終了";
-                document.getElementById("UserAnswer").style.display = "none";
-                document.getElementById("CheckAnswer").style.display = "none";
-                document.getElementById("Explain").style.display = "none";
-                document.getElementById("NextQuestion").style.display = "none";
-                document.getElementById("Result").style.display = "none";
+            const accuracy = (correctCount / 10) * 100; 
+            document.getElementById("Question").textContent = "終了　正答率：${accuracy}%";
+            document.getElementById("UserAnswer").style.display = "none";
+            document.getElementById("CheckAnswer").style.display = "none";
+            document.getElementById("Explain").style.display = "none";
+            document.getElementById("NextQuestion").style.display = "none";
+            document.getElementById("Result").style.display = "none";
             }
         };
       }
