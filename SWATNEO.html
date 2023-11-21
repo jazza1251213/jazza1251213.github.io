@@ -125,18 +125,14 @@
 
       let correctCount = 0;
 
-      function displayQuestion(index) {
+       function displayQuestion(index) {
         let correctAnswer = AnswerArray[index];
 
         document.getElementById("UserAnswer").value = '';
         document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
         document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
         document.getElementById("Explain").style.display = "none";
-        
-        // ボタンを非表示にする
-        document.getElementById("CheckAnswer").style.display = "block";
-        document.getElementById("NextQuestion").style.display = "none";
-        
+
         function checkAnswer() {
           const UserAnswer = document.getElementById("UserAnswer").value;
           const resultElement = document.getElementById("Result");
@@ -144,18 +140,15 @@
 
           const isCorrect = UserAnswer === correctAnswer;
           resultElement.textContent = UserAnswer === correctAnswer ? "正解" : "不正解";
-          
+
           if (isCorrect) {
             correctCount++;
           }
-          
+
           document.getElementById("Explain").style.display = "block";
           resultElement.style.display = "block"; // Show result on user's answer
           nextQuestionButton.style.display = "block"; // Show NextQuestion after user's answer
-        }
-
-        // ボタンを非表示にする
-          document.getElementById("CheckAnswer").style.display = "none";
+          document.getElementById("CheckAnswer").style.display = "none"; // Hide CheckAnswer after user's answer
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
@@ -165,22 +158,23 @@
             currentIndex++;
             document.getElementById("Result").style.display = "none"; // Hide result for the next question
             document.getElementById("NextQuestion").style.display = "none"; // Hide NextQuestion for the next question
+            document.getElementById("CheckAnswer").style.display = "block"; // Show CheckAnswer for the next question
             displayQuestion(currentIndex);
-          }else {
-            const accuracy = (correctCount / 10) * 100; 
+          } else {
+            const accuracy = (correctCount / 10) * 100;
             document.getElementById("Question").textContent = "終了　正答率：" + accuracy + "％";
             document.getElementById("UserAnswer").style.display = "none";
             document.getElementById("CheckAnswer").style.display = "none";
             document.getElementById("Explain").style.display = "none";
             document.getElementById("NextQuestion").style.display = "none";
             document.getElementById("Result").style.display = "none";
-            }
+          }
         };
       }
     </script>
   </head>
   <body>
-    <h1>sWATNEO</h1>
+    <h1>SWATNEO</h1>
     <label id="Question"></label>
     <br><br>
     <input type="text" id="UserAnswer" />
