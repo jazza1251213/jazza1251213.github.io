@@ -106,7 +106,7 @@
 
       function prepareData() {
         if (AnswerText && QuestionText && ExplainText) {
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < 5; i++) {
             const Random = getRandomInt(0, AnswerText.length - 1);
 
             AnswerArray.push(AnswerText[Random]);
@@ -117,7 +117,7 @@
             QuestionText.splice(Random, 1);
             ExplainText.splice(Random, 1);
           }
-          if (AnswerArray.length === 10) {
+          if (AnswerArray.length === 5) {
             displayQuestion(currentIndex);
           }
         }
