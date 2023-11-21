@@ -154,14 +154,14 @@
         document.getElementById("CheckAnswer").onclick = checkAnswer;
 
         document.getElementById("NextQuestion").onclick = function () {
-          if (currentIndex + 1 < 10) {
+          if (currentIndex + 1 < 5) {
             currentIndex++;
             document.getElementById("Result").style.display = "none"; // Hide result for the next question
             document.getElementById("NextQuestion").style.display = "none"; // Hide NextQuestion for the next question
             document.getElementById("CheckAnswer").style.display = "block"; // Show CheckAnswer for the next question
             displayQuestion(currentIndex);
           } else {
-            const accuracy = (correctCount / 10) * 100;
+            const accuracy = (correctCount / 5) * 100;
             document.getElementById("Question").textContent = "終了　正答率：" + accuracy + "％";
             document.getElementById("UserAnswer").style.display = "none";
             document.getElementById("CheckAnswer").style.display = "none";
