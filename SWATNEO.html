@@ -133,6 +133,10 @@
         document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
         document.getElementById("Explain").style.display = "none";
         
+        // ボタンを非表示にする
+        document.getElementById("CheckAnswer").style.display = "block";
+        document.getElementById("NextQuestion").style.display = "none";
+        
         function checkAnswer() {
           const UserAnswer = document.getElementById("UserAnswer").value;
           const resultElement = document.getElementById("Result");
@@ -148,6 +152,10 @@
           document.getElementById("Explain").style.display = "block";
           resultElement.style.display = "block"; // Show result on user's answer
           nextQuestionButton.style.display = "block"; // Show NextQuestion after user's answer
+        }
+
+        // ボタンを非表示にする
+          document.getElementById("CheckAnswer").style.display = "none";
         }
 
         document.getElementById("CheckAnswer").onclick = checkAnswer;
@@ -172,7 +180,7 @@
     </script>
   </head>
   <body>
-    <h1>SWATNEO</h1>
+    <h1>sWATNEO</h1>
     <label id="Question"></label>
     <br><br>
     <input type="text" id="UserAnswer" />
