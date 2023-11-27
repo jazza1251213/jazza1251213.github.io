@@ -1,57 +1,72 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>SWATNEO</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWATNEO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
 
-      h1 {
-        text-align: left;
-        font-size: 80px;
-        color: #202020;
-      }
+    h1 {
+      text-align: left;
+      font-size: 80px;
+      color: #202020;
+    }
 
-      label {
-        font-weight: nomal;
-        font-size: 40px;
-        color: #202020;
-      }
+    label {
+      font-weight: normal;
+      font-size: 40px;
+      color: #202020;
+    }
 
-      #UserAnswer {
-        padding: 5px;
-        margin: 5px 0;
-        font-size: 40px;
-      }
+    #Question {
+      font-size: 40px;
+    }
 
-      #CheckAnswer, #NextQuestion {
-        padding: 8px 20px;
-        background-color: #00a1e9;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin: 5px 0;
-        font-size: 40px;
-      }
+    #UserAnswer {
+      padding: 5px;
+      margin: 5px 0;
+      font-size: 40px;
+    }
 
-      #CheckAnswer:hover, #NextQuestion:hover {
-        background-color: #e4007f;
-        font-size: 40px;
-      }
+    #CheckAnswer, #NextQuestion {
+      padding: 8px 20px;
+      background-color: #00a1e9;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 5px 0;
+      font-size: 40px;
+    }
 
-      #Result {
-        font-weight: nomal;
-        font-size: 40px;
-        display: none; /* Initially hidden */
-      }
+    #CheckAnswer:hover, #NextQuestion:hover {
+      background-color: #e4007f;
+      font-size: 40px;
+    }
 
-      #Explain {
-        display: none;
-        font-style: nomal;
-        color: #606060;
-        font-size: 40px;
-      }
+    #Result {
+      font-weight: normal;
+      font-size: 40px;
+      display: none;
+    }
+
+    #Explain {
+      display: none;
+      font-style: normal;
+      color: #606060;
+      font-size: 40px;
+    }
+
+    #ButtonContainer {
+      display: flex;
+      align-items: center;
+    }
+
+    #CheckAnswerContainer {
+      margin-right: 10px;
+    }
     </style>
     <script>
       const AnswerArray = [];
@@ -178,9 +193,13 @@
     <label id="Question"></label>
     <br><br>
     <input type="text" id="UserAnswer" />
-    <button id="CheckAnswer">解答する</button>
-    <p id="Result" style="display: none"></p> <!-- Initially hidden -->
-    <p id="Explain"></p>
-    <button id="NextQuestion" style="display: none">次の問題</button> <!-- Initially hidden -->
+    <div id="ButtonContainer">
+      <div id="CheckAnswerContainer">
+        <button id="CheckAnswer">解答する</button>
+      </div>
+      <button id="NextQuestion" style="display: none">次の問題</button>
+  </div>
+  <p id="Result" style="display: none"></p>
+  <p id="Explain"></p>
   </body>
 </html>
