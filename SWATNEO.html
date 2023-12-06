@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,149 +67,161 @@
     #CheckAnswerContainer {
       margin-right: 10px;
     }
-    </style>
-    <script>
-      const AnswerArray = [];
-      const QuestionArray = [];
-      const ExplainArray = [];
+  </style>
+  <script>
+    // 配列: 質問、回答、解説を格納するための配列
+    const AnswerArray = [];
+    const QuestionArray = [];
+    const ExplainArray = [];
 
-      let AnswerText, QuestionText, ExplainText;
-      let currentIndex = 0;
+    // ファイルの内容と現在の質問インデックスを保持するための変数
+    let AnswerText, QuestionText, ExplainText;
+    let currentIndex = 0;
 
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
+    // min から max までのランダムな整数を取得する関数
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-      const AnswerFile = 'ans.txt';
-      fetch(AnswerFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
-          }
-          return response.text();
-        })
-        .then(text => {
-          AnswerText = text.replace(/\n+$/, '').split('\n');
-          prepareData();
-        });
+    // 回答、質問、解説のファイルのパス
+    const AnswerFile = 'ans.txt';
+    const QuestionFile = 'que.txt';
+    const ExplainFile = 'exp.txt';
 
-      const QuestionFile = 'que.txt';
-      fetch(QuestionFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
-          }
-          return response.text();
-        })
-        .then(text => {
-          QuestionText = text.replace(/\n+$/, '').split('\n');
-          prepareData();
-        });
-
-      const ExplainFile = 'exp.txt';
-      fetch(ExplainFile)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('ネットワークの応答に問題があります');
-          }
-          return response.text();
-        })
-        .then(text => {
-          ExplainText = text.replace(/\n+$/, '').split('\n');
-          prepareData();
-        });
-
-      function prepareData() {
-        if (AnswerText && QuestionText && ExplainText) {
-          for (let i = 0; i < 5; i++) {
-            const Random = getRandomInt(0, AnswerText.length - 1);
-
-            AnswerArray.push(AnswerText[Random]);
-            QuestionArray.push(QuestionText[Random]);
-            ExplainArray.push(ExplainText[Random]);
-
-            AnswerText.splice(Random, 1);
-            QuestionText.splice(Random, 1);
-            ExplainText.splice(Random, 1);
-          }
-          if (AnswerArray.length === 5) {
-            displayQuestion(currentIndex);
-          }
+    // ファイルからデータを取得し、質問を準備する関数
+    fetch(AnswerFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('ネットワークの応答に問題があります');
         }
-      }
-
-      let correctCount = 0;
-
-       function displayQuestion(index) {
-        let correctAnswer = AnswerArray[index];
-
-        document.getElementById("UserAnswer").value = '';
-        document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
-        document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
-        document.getElementById("Explain").style.display = "none";
-
-        function checkAnswer() {
-          const UserAnswer = document.getElementById("UserAnswer").value;
-          const resultElement = document.getElementById("Result");
-          const nextQuestionButton = document.getElementById("NextQuestion");
-
-          const isCorrect = UserAnswer === correctAnswer;
-          resultElement.textContent = UserAnswer === correctAnswer ? "正解" : "不正解";
-
-          if (isCorrect) {
-            correctCount++;
-          }
-
-          document.getElementById("Explain").style.display = "block";
-          resultElement.style.display = "block"; // Show result on user's answer
-          nextQuestionButton.style.display = "block"; // Show NextQuestion after user's answer
-          document.getElementById("CheckAnswer").style.display = "none"; // Hide CheckAnswer after user's answer
-        }
-
-        document.getElementById("CheckAnswer").onclick = checkAnswer;
-
-        document.getElementById("NextQuestion").onclick = function () {
-          if (currentIndex + 1 < 5) {
-            currentIndex++;
-            document.getElementById("Result").style.display = "none"; // Hide result for the next question
-            document.getElementById("NextQuestion").style.display = "none"; // Hide NextQuestion for the next question
-            document.getElementById("CheckAnswer").style.display = "block"; // Show CheckAnswer for the next question
-            displayQuestion(currentIndex);
-          } else {
-            const accuracy = (correctCount / 5) * 100;
-            document.getElementById("Question").textContent = "終了　正答率：" + accuracy + "％";
-            document.getElementById("UserAnswer").style.display = "none";
-            document.getElementById("CheckAnswer").style.display = "none";
-            document.getElementById("Explain").style.display = "none";
-            document.getElementById("NextQuestion").style.display = "none";
-            document.getElementById("Result").style.display = "none";
-          }
-        };
-      }
-      document.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-          if (document.getElementById("CheckAnswer").style.display !== "none") {
-            document.getElementById("CheckAnswer").click();
-          } else if (document.getElementById("NextQuestion").style.display !== "none") {
-            document.getElementById("NextQuestion").click();
-          }
-        }
+        return response.text();
+      })
+      .then(text => {
+        AnswerText = text.replace(/\n+$/, '').split('\n');
+        prepareData();
       });
-      
-    </script>
-  </head>
-  <body>
-    <h1>SWAT NEO</h1>
-    <label id="Question"></label>
-    <br><br>
-    <input type="text" id="UserAnswer" />
-    <div id="ButtonContainer">
-      <div id="CheckAnswerContainer">
-        <button id="CheckAnswer">解答する</button>
-      </div>
-      <button id="NextQuestion" style="display: none">次の問題</button>
+
+    fetch(QuestionFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('ネットワークの応答に問題があります');
+        }
+        return response.text();
+      })
+      .then(text => {
+        QuestionText = text.replace(/\n+$/, '').split('\n');
+        prepareData();
+      });
+
+    fetch(ExplainFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('ネットワークの応答に問題があります');
+        }
+        return response.text();
+      })
+      .then(text => {
+        ExplainText = text.replace(/\n+$/, '').split('\n');
+        prepareData();
+      });
+
+    // ファイルからデータを取得した後にデータを準備する関数
+    function prepareData() {
+      if (AnswerText && QuestionText && ExplainText) {
+        for (let i = 0; i < 5; i++) {
+          const Random = getRandomInt(0, AnswerText.length - 1);
+
+          AnswerArray.push(AnswerText[Random]);
+          QuestionArray.push(QuestionText[Random]);
+          ExplainArray.push(ExplainText[Random]);
+
+          AnswerText.splice(Random, 1);
+          QuestionText.splice(Random, 1);
+          ExplainText.splice(Random, 1);
+        }
+        if (AnswerArray.length === 5) {
+          displayQuestion(currentIndex);
+        }
+      }
+    }
+
+    // 正解の数をカウントする変数
+    let correctCount = 0;
+
+    // 質問を表示する関数
+    function displayQuestion(index) {
+      let correctAnswer = AnswerArray[index];
+
+      document.getElementById("UserAnswer").value = '';
+      document.getElementById("Question").textContent = "問題：" + QuestionArray[index];
+      document.getElementById("Explain").textContent = "解説：" + ExplainArray[index];
+      document.getElementById("Explain").style.display = "none";
+
+      // 回答をチェックする関数
+      function checkAnswer() {
+        const UserAnswer = document.getElementById("UserAnswer").value;
+        const resultElement = document.getElementById("Result");
+        const nextQuestionButton = document.getElementById("NextQuestion");
+
+        const isCorrect = UserAnswer === correctAnswer;
+        resultElement.textContent = isCorrect ? "正解" : "不正解";
+
+        if (isCorrect) {
+          correctCount++;
+        }
+
+        document.getElementById("Explain").style.display = "block";
+        resultElement.style.display = "block"; // ユーザーの回答を表示する
+        nextQuestionButton.style.display = "block"; // ユーザーの回答後に「次の問題」を表示する
+        document.getElementById("CheckAnswer").style.display = "none"; // ユーザーの回答後に「解答する」を非表示にする
+      }
+
+      document.getElementById("CheckAnswer").onclick = checkAnswer;
+
+      // 「次の問題」ボタンがクリックされたときの処理
+      document.getElementById("NextQuestion").onclick = function () {
+        if (currentIndex + 1 < 5) {
+          currentIndex++;
+          document.getElementById("Result").style.display = "none"; // 次の質問のために結果を非表示にする
+          document.getElementById("NextQuestion").style.display = "none"; // 次の質問のために「次の問題」を非表示にする
+          document.getElementById("CheckAnswer").style.display = "block"; // 次の質問のために「解答する」を表示する
+          displayQuestion(currentIndex);
+        } else {
+          const accuracy = (correctCount / 5) * 100;
+          document.getElementById("Question").textContent = "終了　正答率：" + accuracy + "％";
+          document.getElementById("UserAnswer").style.display = "none";
+          document.getElementById("CheckAnswer").style.display = "none";
+          document.getElementById("Explain").style.display = "none";
+          document.getElementById("NextQuestion").style.display = "none";
+          document.getElementById("Result").style.display = "none";
+        }
+      };
+    }
+
+    // Enterキーが押されたときの処理
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        if (document.getElementById("CheckAnswer").style.display !== "none") {
+          document.getElementById("CheckAnswer").click();
+        } else if (document.getElementById("NextQuestion").style.display !== "none") {
+          document.getElementById("NextQuestion").click();
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>SWAT NEO</h1>
+  <label id="Question"></label>
+  <br><br>
+  <input type="text" id="UserAnswer" />
+  <div id="ButtonContainer">
+    <div id="CheckAnswerContainer">
+      <button id="CheckAnswer">解答する</button>
+    </div>
+    <button id="NextQuestion" style="display: none">次の問題</button>
   </div>
   <p id="Result" style="display: none"></p>
   <p id="Explain"></p>
-  </body>
+</body>
 </html>
